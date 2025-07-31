@@ -4,19 +4,19 @@ const bankAccount = {
   balance: 0,
 
   deposit(dep) {
-    bankAccount.balance += dep;
+    this.balance += dep;
   },
   withdraw(withdrawMoney) {
-    bankAccount.balance -= withdrawMoney;
+    this.balance -= withdrawMoney;
   },
 };
 const confirmUser = confirm("Підтвердіть");
 if (confirmUser) {
-  bankAccount.deposit(prompt("Введіть суму для поповнення"));
+  this.deposit(prompt("Введіть суму для поповнення"));
 } else {
-  bankAccount.withdraw(prompt("Введіть скільки ви хочете зняти"));
+  this.withdraw(prompt("Введіть скільки ви хочете зняти"));
 }
-alert(`Ваш рахунок ${bankAccount.balance}`);
+alert(`Ваш рахунок ${this.balance}`);
 
 //Завдання 2
 
@@ -26,11 +26,11 @@ const weather = {
   windSpeed: 30,
 
   isTemperature() {
-    return weather.temperature < 0;
+    return this.temperature < 0;
   },
 };
-weather.temperature = Number(prompt("Ведіть температуру"));
-if (weather.isTemperature()) {
+this.temperature = Number(prompt("Ведіть температуру"));
+if (this.isTemperature()) {
   alert("Температура нижще 0");
 } else {
   alert("Температура вище 0");
@@ -44,9 +44,9 @@ const user = {
   password: "aboltus",
   login() {
     const emailValid =
-      user.email.includes("@")
+      this.email.includes("@")
     const passwordValid =
-      user.password.length > 5 && user.password.length <= 20;
+      this.password.length > 5 && this.password.length <= 20;
     if (!emailValid) {
       alert("");
     } else {
@@ -69,10 +69,10 @@ const movie = {
   year: 2011,
   rating: 10,
   ratingMovie() {
-    return movie.rating > 8;
+    return this.rating > 8;
   },
 };
-if (movie.ratingMovie()) {
+if (this.ratingMovie()) {
   console.log("Рейтинг фільму вище 8");
 } else {
   console.log("Рейтинг фільму нижче 8");

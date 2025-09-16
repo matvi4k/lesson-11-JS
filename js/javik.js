@@ -1,26 +1,42 @@
 const bankAccount = {
   ownerName: "Matviy",
   accountNumber: 123,
-  balance: 0,
+  balance: 1000,
 
-  deposit(dep) {
-    this.balance += dep;
+  deposit(amount) {
+    this.balance += amount;
   },
-  withdraw(withdrawMoney) {
-    this.balance -= withdrawMoney;
+
+  withdraw(amount) {
+    if (amount > this.balance) {
+      alert("Недостатньо коштів для зняття!");
+    } else {
+      this.balance -= amount;
+    }
   },
 };
+alert(`Ваш рахунок: ${bankAccount.balance}`);
 
-const confirmUser = confirm("Підтвердіть");
-if (confirmUser) {
-  const sum = Number(prompt("Введіть суму для поповнення"));
-  bankAccount.deposit(sum);
+const confirmAction = confirm("Якщо бажаете поповнити натисніть 'ОК', якщо знати натисніть 'Cansel'");
+
+if (confirmAction) {
+  const depositAmount = Number(prompt("Введіть суму для поповнення:"));
+  if (!isNaN(depositAmount) && depositAmount > 0) {
+    bankAccount.deposit(depositAmount);
+  } else {
+    alert("Некоректна сума для поповнення.");
+  }
 } else {
-  const withdrawAmount = Number(prompt("Введіть скільки ви хочете зняти"));
-  bankAccount.withdraw(withdrawAmount);
+  const withdrawAmount = Number(prompt("Введіть суму для зняття:"));
+  if (!isNaN(withdrawAmount) && withdrawAmount > 0) {
+    bankAccount.withdraw(withdrawAmount);
+  } else {
+    alert("Некоректна сума для зняття.");
+  }
 }
 
-alert(`Ваш рахунок ${bankAccount.balance}`);
+alert(`Ваш рахунок: ${bankAccount.balance}`);
+
 
 //Завдання 2
 
